@@ -1,4 +1,4 @@
-module github.com/raszia/gotiny
+module github.com/timel0st/gotiny
 
 go 1.22
 

@@ -33,6 +33,7 @@ var (
 		reflect.TypeOf((*time.Time)(nil)).Elem():      encTime,
 		reflect.TypeOf((*struct{})(nil)).Elem():       encIgnore,
 		reflect.TypeOf(nil):                           encIgnore,
+		reflect.TypeOf(func() {}):                     encIgnore,
 	}
 
 	encEngines = [...]encEng{
@@ -186,7 +187,7 @@ func buildEncEngine(rt reflect.Type, engPtr *encEng) {
 				}
 			}
 		}
-	case reflect.Chan, reflect.Func:
+	case reflect.Chan:
 		panic("not support " + rt.String() + " type")
 	default:
 		engine = encEngines[kind]
